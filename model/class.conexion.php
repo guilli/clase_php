@@ -6,9 +6,9 @@
 
   public function  __construct() {      
     if(!isset($this->conexion)){
-      $this->conexion = (mysql_connect("127.0.0.1","root","root"))
+      $this->conexion = (mysql_connect("127.0.0.1","root"))
         or die(mysql_error());
-      mysql_select_db("clase_0",$this->conexion) or die(mysql_error());
+      mysql_select_db("clase_1",$this->conexion) or die(mysql_error());
     }
   }
 
@@ -19,18 +19,18 @@
       echo 'MySQL Error: ' . mysql_error();
       exit;
     }
-    return $resultado;
+    return $resultado; // Cursor to iterate the results
   }
 
-  public function fetch_array($consulta){
-   return mysql_fetch_array($consulta, MYSQL_ASSOC);
+  public function fetch_array($consulta){ // this parameter receives the cursor
+   return mysql_fetch_array($consulta, MYSQL_ASSOC); // MYSQL_ASSOC tells me to now show the row number
   }
 
-  public function num_rows($consulta){
+  public function num_rows($consulta){ // gets if there are rows returned
    return mysql_num_rows($consulta);
   }
 
-  public function getTotalConsultas(){
+  public function getTotalConsultas(){ // gets the total of queries (this is by page by object)
    return $this->total_consultas;
   }
 
