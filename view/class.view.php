@@ -12,8 +12,26 @@ class vista {
 
     public function get_content(){ // Create output
         $output = $this->header;
-        $output .= exec('whoami').'<br />'; // Console command
-        $output .= exec('ls');
+        //$output .= exec('whoami').'<br />'; // Console command
+        //$output .= exec('ls');
+        
+        $db = new MySQL();
+        
+        $consulta = $db->consulta("SELECT * FROM users");
+        
+        if($db->num_rows($consulta)>0){ // Check if returned something
+          $output .= '<table><thead><tr><th>ID</th><th>NAME</th></thead>';
+          $output .= '<tbody>';
+          while($resultados = $db->fetch_array($consulta)){
+           //print_r($resultados);
+           //echo $resultados['nombre'].'<br />';
+           $output .= '<tr><td>'.$resultados['id'].'</td><td>'.$resultados['nombre'].'</td></tr>';
+           //$output .= $resultados['id'].' - '.$resultados['nombre'].'<br />';
+         }
+         $output .= '</tbody></table>';
+        }
+        
+        
         $output .= $this->footer;
         return $output;
     }
