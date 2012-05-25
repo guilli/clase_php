@@ -6,7 +6,7 @@
 
   public function  __construct() {      
     if(!isset($this->conexion)){
-      $this->conexion = (mysql_connect("127.0.0.1","root"))
+      $this->conexion = (mysql_connect("127.0.0.1","root", "admin1!"))
         or die(mysql_error());
       mysql_select_db("clase_1",$this->conexion) or die(mysql_error());
     }
