@@ -1,4 +1,5 @@
 @CHARSET "UTF-8";
-table, th, td {
-	border: 1px solid black;
-}
+table.display td, table.display th {
+    padding:4px; min-width:100px; }
+table.display th {
+    text-align:center; font-weight:bold;}
